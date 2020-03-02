@@ -24,6 +24,10 @@ transform
     .SetEase(Ease.InOutQuad); 
 ```
 
+![](https://cdn.discordapp.com/attachments/671943194832797726/683814094083850361/Scaling.gif)
+
+
+
 Just on start The loop type yoyo makes it go back and forth and the -1 makes it keep going forever
 
 ```csharp
