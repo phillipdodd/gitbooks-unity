@@ -4,6 +4,7 @@
 
 ## Resources
 
+* [Tweening](resources/tweening.md)
 * [Tutorials](resources/tutorials.md)
 * [Tools](resources/tools.md)
 
@@ -23,5 +24,5 @@
 ## Workflow
 
 * [Inspectors](workflow/inspectors.md)
-* [Tweening](tweening.md)
+* [Sound](sound.md)
 
