@@ -8,10 +8,6 @@
 * [Tutorials](resources/tutorials.md)
 * [Tools](resources/tools.md)
 
-## 3D Game Objects
-
-* [Quad](3d-game-objects/quad.md)
-
 ## Conventions
 
 * [Assets Folder](conventions/assets-folder.md)
@@ -25,4 +21,9 @@
 
 * [Inspectors](workflow/inspectors.md)
 * [Sound](sound.md)
+
+## Data Handling <a id="data"></a>
+
+* [Streaming Assets](data/streaming-assets.md)
+* [Audio](audio.md)
 
