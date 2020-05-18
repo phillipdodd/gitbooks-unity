@@ -1,10 +1,10 @@
-# PersistentStorage
+# Persistent Storage Stuff
 
 {% embed url="https://catlikecoding.com/unity/tutorials/object-management/persisting-objects/" %}
 
-## PersistentStorage
+## 
 
-## Persient
+## PersistentStorage
 
 ```csharp
 using System.IO;
@@ -41,6 +41,8 @@ public class PersistentStorage : MonoBehaviour
 
 ```
 
+## PeristableObject
+
 ```csharp
 using UnityEngine;
 
@@ -64,142 +66,151 @@ public class PersistableObject : MonoBehaviour
 
 ```
 
-
+## GameDataReader
 
 ```csharp
-using System.IO; using UnityEngine;
-public class GameDataReader {public int Version { get; }    
-private BinaryReader reader;
+using System.IO; 
+using UnityEngine;
+public class GameDataReader {
 
-public GameDataReader(BinaryReader reader, int version)
-{
-    this.reader = reader;
-    Version = version;
-}
+    public int Version { get; }    
+    private BinaryReader reader;
 
-public float ReadFloat()
-{
-    return reader.ReadSingle();
-}
+    public GameDataReader(BinaryReader reader, int version)
+    {
+        this.reader = reader;
+        Version = version;
+    }
 
-public int ReadInt()
-{
-    return reader.ReadInt32();
-}
+    public float ReadFloat()
+    {
+        return reader.ReadSingle();
+    }
 
-public Quaternion ReadQuaternion()
-{
-    Quaternion value;
-    value.x = reader.ReadSingle();
-    value.y = reader.ReadSingle();
-    value.z = reader.ReadSingle();
-    value.w = reader.ReadSingle();
-    return value;
-}
+    public int ReadInt()
+    {
+        return reader.ReadInt32();
+    }
 
-public Vector3 ReadVector3()
-{
-    Vector3 value;
-    value.x = reader.ReadSingle();
-    value.y = reader.ReadSingle();
-    value.z = reader.ReadSingle();
-    return value;
-}
+    public Quaternion ReadQuaternion()
+    {
+        Quaternion value;
+        value.x = reader.ReadSingle();
+        value.y = reader.ReadSingle();
+        value.z = reader.ReadSingle();
+        value.w = reader.ReadSingle();
+        return value;
+    }
 
-public Color ReadColor()
-{
-    Color value;
-    value.r = reader.ReadSingle();
-    value.g = reader.ReadSingle();
-    value.b = reader.ReadSingle();
-    value.a = reader.ReadSingle();
-    return value;
+    public Vector3 ReadVector3()
+    {
+        Vector3 value;
+        value.x = reader.ReadSingle();
+        value.y = reader.ReadSingle();
+        value.z = reader.ReadSingle();
+        return value;
+    }
+
+    public Color ReadColor()
+    {
+        Color value;
+        value.r = reader.ReadSingle();
+        value.g = reader.ReadSingle();
+        value.b = reader.ReadSingle();
+        value.a = reader.ReadSingle();
+        return value;
+    }
 }
 ```
 
-}
-
-using System.IO; using UnityEngine;
-
-public class GameDataWriter { BinaryWriter writer;
+## GameDataWriter
 
 ```csharp
-public GameDataWriter(BinaryWriter writer)
-{
-    this.writer = writer;
-}
+using System.IO; using UnityEngine;
 
-public void Write(float value)
-{
-    writer.Write(value);
-}
+public class GameDataWriter { 
+    
+    BinaryWriter writer;
 
-public void Write(int value)
-{
-    writer.Write(value);
-}
+    public GameDataWriter(BinaryWriter writer)
+    {
+        this.writer = writer;
+    }
 
-public void Write(Quaternion value)
-{
-    writer.Write(value.x);
-    writer.Write(value.y);
-    writer.Write(value.z);
-    writer.Write(value.w);
-}
+    public void Write(float value)
+    {
+        writer.Write(value);
+    }
 
-public void Write(Vector3 value)
-{
-    writer.Write(value.x);
-    writer.Write(value.y);
-    writer.Write(value.z);
-}
+    public void Write(int value)
+    {
+        writer.Write(value);
+    }
 
-public void Write(Color value)
-{
-    writer.Write(value.r);
-    writer.Write(value.g);
-    writer.Write(value.b);
-    writer.Write(value.a);
+    public void Write(Quaternion value)
+    {
+        writer.Write(value.x);
+        writer.Write(value.y);
+        writer.Write(value.z);
+        writer.Write(value.w);
+    }
+
+    public void Write(Vector3 value)
+    {
+        writer.Write(value.x);
+        writer.Write(value.y);
+        writer.Write(value.z);
+    }
+
+    public void Write(Color value)
+    {
+        writer.Write(value.r);
+        writer.Write(value.g);
+        writer.Write(value.b);
+        writer.Write(value.a);
+    }
 }
 ```
 
-}
+## Game with Save/Load Methods
 
-
-
-using System.Collections.Generic; using UnityEngine;
+```text
+using System.Collections.Generic; 
+using UnityEngine;
 
 public class Game : PersistableObject {
 
-```text
-public override void Save(GameDataWriter writer)
-{
-    writer.Write(shapes.Count);
-    for (int i = 0; i < shapes.Count; i++)
-    {
-        writer.Write(shapes[i].ShapeId);
-        writer.Write(shapes[i].MaterialId);
-        shapes[i].Save(writer);
-    }
-}
+    //...
 
-public override void Load(GameDataReader reader)
-{
-    int version = reader.Version;
-    if (version > saveVersion)
+    public override void Save(GameDataWriter writer)
     {
-        Debug.LogError("Unsupported future save version " + version);
-        return;
+        writer.Write(shapes.Count);
+        for (int i = 0; i < shapes.Count; i++)
+        {
+            writer.Write(shapes[i].ShapeId);
+            writer.Write(shapes[i].MaterialId);
+            shapes[i].Save(writer);
+        }
     }
 
-    int count = version <= 0 ? -version : reader.ReadInt();
-    for (int i = 0; i < count; i++)
+    public override void Load(GameDataReader reader)
     {
-        int shapeId = version > 0 ? reader.ReadInt() : 0;
-        int materialId = version > 0 ? reader.ReadInt() : 0;
-        Shape instance = shapeFactory.Get(shapeId, materialId);
-        instance.Load(reader);
-        shapes.Add(instance);
+        int version = reader.Version;
+        if (version > saveVersion)
+        {
+            Debug.LogError("Unsupported future save version " + version);
+            return;
+        }
+
+        int count = version <= 0 ? -version : reader.ReadInt();
+        for (int i = 0; i < count; i++)
+        {
+            int shapeId = version > 0 ? reader.ReadInt() : 0;
+            int materialId = version > 0 ? reader.ReadInt() : 0;
+            Shape instance = shapeFactory.Get(shapeId, materialId);
+            instance.Load(reader);
+            shapes.Add(instance);
+        }
     }
 }
 ```

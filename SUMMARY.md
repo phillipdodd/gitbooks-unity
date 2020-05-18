@@ -40,5 +40,5 @@
 * [Object Factory w/ Pools](how-to/object-factory-w-pools.md)
 * [Scene Transition](how-to/scene-transition.md)
 * [Calculate Angle to Face Target](how-to/calculate-angle-to-face-target.md)
-* [PersistentStorage](persistentstorage.md)
+* [Persistent Storage Stuff](persistentstorage.md)
 
