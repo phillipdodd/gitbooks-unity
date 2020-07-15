@@ -10,6 +10,8 @@
 
 ## Conventions
 
+* [Videos](conventions/videos.md)
+* [2D Sprite Import Settings](conventions/2d-sprite-import-settings.md)
 * [Assets Folder](conventions/assets-folder.md)
 
 ## UI <a id="ui-1"></a>
@@ -21,6 +23,8 @@
 * [Inspectors](workflow/inspectors.md)
 
 ## Data Handling <a id="data"></a>
+
+---
 
 * [Streaming Assets](audio.md)
 
@@ -40,5 +44,8 @@
 * [Object Factory w/ Pools](how-to/object-factory-w-pools.md)
 * [Scene Transition](how-to/scene-transition.md)
 * [Calculate Angle to Face Target](how-to/calculate-angle-to-face-target.md)
+
+---
+
 * [Persistent Storage Stuff](persistentstorage.md)
 
