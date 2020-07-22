@@ -48,4 +48,5 @@
 ---
 
 * [Persistent Storage Stuff](persistentstorage.md)
+* [Git](git.md)
 
