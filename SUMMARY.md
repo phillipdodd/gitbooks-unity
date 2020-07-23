@@ -4,6 +4,7 @@
 
 ## Resources
 
+* [Git](resources/git.md)
 * [Tweening](resources/tweening.md)
 * [Tutorials](resources/tutorials.md)
 * [Tools](resources/tools.md)
@@ -42,11 +43,7 @@
 ## How To
 
 * [Object Factory w/ Pools](how-to/object-factory-w-pools.md)
+* [Persistent Storage Stuff](how-to/persistentstorage.md)
 * [Scene Transition](how-to/scene-transition.md)
 * [Calculate Angle to Face Target](how-to/calculate-angle-to-face-target.md)
-
----
-
-* [Persistent Storage Stuff](persistentstorage.md)
-* [Git](git.md)
 
