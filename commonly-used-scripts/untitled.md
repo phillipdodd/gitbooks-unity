@@ -40,6 +40,16 @@ public class PlayerMovement : MonoBehaviour
 
 ## Click to Move
 
+Note: `BoolVariable`, `FloatVariable` etc are scriptable object assets as described [here](https://www.schellgames.com/blog/game-architecture-with-scriptable-objects/).
+
+Also see
+
+{% page-ref page="../scriptable-objects/gameevent-and-gameeventlistener.md" %}
+
+{% page-ref page="../scriptable-objects/floatvariable.md" %}
+
+
+
 ```csharp
 using Sirenix.OdinInspector;
 using UnityEngine;
